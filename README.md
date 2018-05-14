@@ -4,7 +4,7 @@ R package to read nuclear medicine imaging studies saved in the interfile file f
 
 ## Getting Started
 
-After installation, please see the [vignette](https://github.com/kippjohnson/interfile/blob/master/vignettes/introduction.Rmd) for a short example. Please see install the package using devtools::install_github("kippjohnson/interfile").
+After installation, please see the [vignette](https://github.com/kippjohnson/interfile/blob/master/vignettes/introduction.Rmd) for a short example. You can install the package using devtools::install_github("kippjohnson/interfile").
 
 ## Feature requests
 
