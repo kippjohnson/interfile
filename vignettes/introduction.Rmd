@@ -1,0 +1,42 @@
+---
+title: "interfile"
+author: "Kipp Johnson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Basic usage
+
+This minimal R package contains (currently) only a single function that can read in binary files stored in the interfile file format as specified by Todd-Pokropek, Cradduck, and Deconinck in "A file format for the exchange of nuclear medicine image data: a specificiation of Interfile version 3.3" (Nuclear Medicine Communications, 13 Sept. 1992, 12(9):673-99)
+
+Interfile file format consists of paired image (file extension: .img) and header (file extension: .hdr) files. The header file is a text file containing a number of key-value pairs, and the image file is a binary file storing pixel intensities in row-major format. Pixel intensities in general correlate to the energy intensity captured by the detector.
+
+We include an example interfile of a bisected rabbit aorta to demonstrate the function.
+
+```{r, Read in an example interfile}
+# Load the package
+library(interfile)
+
+# Load an example interfile (Rabbit aorta, Tc99m scan)
+interfile.location <- system.file("extdata", "Tc99m_20percent_energy.img", package = "interfile")
+
+# Read the binary interfile
+my_scan <- readStaticInterfileIMG(interfile.location)
+```
+
+## Plot of data matrix
+
+```{r, fig.show='hold'}
+image(my_scan, axes=F, asp=1)
+```

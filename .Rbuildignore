@@ -1,2 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.git
+^\.gitignore
+^\.DS_Store
+^inst/.DS_Store
+^man/.DS_Store
