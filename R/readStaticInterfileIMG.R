@@ -23,6 +23,76 @@
 #' # Check out the results (returned as a matrix)
 #' dim(my_scan)
 #' head(my_scan)
+readHeaderFileHDR <- function(fname){
+  header <- system.file("extdata", "Tc99m_20percent_energy.hdr", package = "interfile")
+  if(! grepl("\\.hdr$", header)){  # if filename pasted in does not
+    hdr.file <- paste0(header, ".hdr") # end in .img, append .img to it
+  }else{
+    hdr.file <- header
+  }
+  to.read <- file(hdr.file, "rt")
+  fname <- sub(".hdr$",".img",hdr.file)
+  all_data <- readLines(to.read)
+  for(i in 1:length(all_data)){
+    line <- all_data[i]
+    if(grepl("byte order",line, ignore.case = TRUE)){
+      if(grepl("little",line, ignore.case = TRUE)){
+        endian <- "little"
+      }
+      if(grepl("big",line, ignore.case = TRUE)){
+        endian <- "big"
+      }
+
+    }
+
+    if(grepl("matrix size [1]",line, ignore.case = TRUE)){
+     row <- substr(line, nchar(line)-5+1, nchar(line))
+     row <- gregexpr("[0-9]+", number)
+     file.row <- row
+    }
+    if(grepl("matrix size [2]",line, ignore.case = TRUE)){
+      column <- substr(line, nchar(line)-5+1, nchar(line))
+      column <- gregexpr("[0-9]+", number)
+      file.column <- column
+    }
+    if(grepl("per pixel",line, ignore.case = TRUE)){
+      bytes.per.pixel <- substr(line, nchar(line)-1+1, nchar(line))
+      bytes.per.pixel<- gregexpr("[0-9]+", bytes.per.pixel)
+     }
+    if(grepl("number format",line, ignore.case = TRUE)){
+      if(grepl("float" && "double",line, ignore.case = TRUE)){
+        what <- "double"
+      }
+      if(grepl("numeric",line, ignore.case = TRUE)){
+        what <- "numeric"
+      }
+      if(grepl("integer",line, ignore.case = TRUE)){
+        what <- "integer"
+      }
+      if(grepl("int",line, ignore.case = TRUE)){
+        what <- "int"
+      }
+      if(grepl("logical",line, ignore.case = TRUE)){
+        what <- "logical"
+      }
+      if(grepl("complex",line, ignore.case = TRUE)){
+        what <- "complex"
+      }
+      if(grepl("character",line, ignore.case = TRUE)){
+        what <- "character"
+      }
+      if(grepl("raw",line, ignore.case = TRUE)){
+        what <- "raw"
+      }
+     }
+
+    i <- i+1
+  }
+
+
+}
+
+
 
 readStaticInterfileIMG <- function(fname,
                                    endian="little",
