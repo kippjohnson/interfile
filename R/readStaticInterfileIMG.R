@@ -63,7 +63,7 @@ header <- fname
         if (grepl("float", line, ignore.case = TRUE)) {
           what <- "double"
         }
-        if (grepl("float", line, ignore.case = TRUE)) {
+        if (grepl("double", line, ignore.case = TRUE)) {
           what <- "double"
         }
         if (grepl("numeric", line, ignore.case = TRUE)) {
@@ -86,6 +86,12 @@ header <- fname
         }
         if (grepl("raw", line, ignore.case = TRUE)) {
           what <- "raw"
+        }
+        if (grepl("ASCII", line, ignore.case = TRUE)) {
+          what <- "character"
+        }
+        if (grepl("bit", line, ignore.case = TRUE)) {
+          what <- "logical"
         }
       }
       i <- i + 1
