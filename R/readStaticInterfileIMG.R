@@ -16,7 +16,7 @@
 #' # Check out the results (returned as a matrix)
 #' dim(my_scan)
 #' head(my_scan)
-rm(list=ls(all=TRUE))
+
 readHeaderFileHDR <- function(fname) {
 header <- fname
   if (!grepl("\\.hdr$", header)) {
