@@ -16,6 +16,7 @@
 #' # Check out the results (returned as a matrix)
 #' dim(my_scan)
 #' head(my_scan)
+rm(list=ls(all=TRUE))
 readHeaderFileHDR <- function(fname) {
 header <- fname
   if (!grepl("\\.hdr$", header)) {
@@ -42,7 +43,7 @@ header <- fname
       }
       #determines the row size
       if (grepl("matrix size \\[1\\]", line, ignore.case = TRUE)) {
-        row <- substr(c, nchar(c) - 5 + 1, nchar(c))
+        row <- substr(line, nchar(line) - 5 + 1, nchar(line))
         row <- as.numeric(gsub("\\D", "", row))
         file.row <- row
       }
@@ -98,14 +99,7 @@ header <- fname
     }
   close(to.read) #close connection
   fname <- sub(".hdr$", ".img", hdr.file) #change file to .img
-  number <- regexpr("\\/[^\\/]*$", fname) + 1
-  fname <- substring(fname, number) #obtain fname of .img
-  folder <- substring(hdr.file, 0, number - 2)
-  number1 <- regexpr("\\/[^\\/]*$", folder) + 1
-  folder <- substring(hdr.file, number1, number - 2) #obtain folder name containg file
-  fname <-
-    system.file(folder, fname, package = "interfile") #store .img file in fname
-  readStaticInterfileIMG(fname, endian, file.row, file.column, what, bytes.per.pixel) #call binary file reader and return
+ readStaticInterfileIMG(fname, endian, file.row, file.column, what, bytes.per.pixel) #call binary file reader and return
 }
 
 readStaticInterfileIMG <- function(fname,
@@ -151,3 +145,4 @@ readStaticInterfileIMG <- function(fname,
   dat.mat <- matrix(dat, ncol = file.col, nrow = file.row)
   return(dat.mat)
 }
+
