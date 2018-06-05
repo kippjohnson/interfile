@@ -28,15 +28,16 @@ We include an example interfile of a bisected rabbit aorta to demonstrate the fu
 # Load the package
 library(interfile)
 
-# Load an example interfile (Rabbit aorta, Tc99m scan)
-interfile.location <- system.file("extdata", "Tc99m_20percent_energy.img", package = "interfile")
+
+# Load an example interfile header (Rabbit aorta, Tc99m scan)
+interfile.location <-system.file("extdata", "Tc99m_20percent_energy.hdr", package = "interfile")
+
 
 # Read the binary interfile
-my_scan <- readStaticInterfileIMG(interfile.location)
+my_scan <- readHeaderFileHDR(interfile.location)
 ```
 
 ## Plot of data matrix
-
 ```{r, fig.show='hold'}
-image(my_scan, axes=F, asp=1)
+image(my_scan, axes=FALSE, asp=.5)
 ```

@@ -1,0 +1,31 @@
+!INTERFILE := 
+!imaging modality := CT
+!version of keys := CASToRv2.0
+CASToR version := 2.0
+
+!GENERAL DATA := 
+!originating system := CBCT_BENCHMARK_V2.0
+!data offset in bytes := 0
+!name of data file := benchmark_ct_histogram_reference_v2.0_it4.img
+patient name := benchmark_ct_histogram.cdh
+
+!GENERAL IMAGE DATA 
+!type of data := Dynamic
+!total number of images := 9
+imagedata byte order := LITTLEENDIAN
+!number of frame groups :=1 
+process status := 
+
+!STATIC STUDY (General) :=
+number of dimensions := 3
+!matrix size [1] := 80
+!matrix size [2] := 80
+!matrix size [3] := 9
+!number format := short float
+!number of bytes per pixel := 4
+scaling factor (mm/pixel) [1] := 2
+scaling factor (mm/pixel) [2] := 2
+scaling factor (mm/pixel) [3] := 2.5
+data rescale offset := 0
+data rescale slope := 1
+!END OF INTERFILE := 
